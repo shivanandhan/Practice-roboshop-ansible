@@ -9,7 +9,7 @@
     state: installed
 
 - name: Load sql file
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.kndevops72.online -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.kndevops72.online -uroot -p{{ lookup('hashi_vault', 'roboshop-{{env}}/data/shipping:mysql_root_password token={{vault_token}} url=http://vault-internal.kndevops72.online:8200')}} < /app/db/{{ item }}.sql
   loop:
     - schema
     - app-user
