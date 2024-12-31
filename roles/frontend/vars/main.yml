@@ -1,2 +1,2 @@
-component: ["catalogue","cart","user","shipping","payment"]
+component_name: ["frontend","catalogue","mongodb","cart","user","rabbitmq","mysql","shipping","payment"]
 
