@@ -7,6 +7,23 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: docker
+
+- name: Restart a container
+  containers.podman.podman_container:
+    name: myapplication
+    image: redis
+    state: started
+    restart: true
+    etc_hosts:
+      other: "127.0.0.1"
+    restart_policy: "no"
+    device: "/dev/sda:/dev/xvda:rwm"
+    ports:
+      - "8080:9000"
+      - "127.0.0.1:8081:9001/udp"
+    env:
+      SECRET_KEY: "ssssh"
+      BOOLEAN_KEY: "yes"
     
   
 
